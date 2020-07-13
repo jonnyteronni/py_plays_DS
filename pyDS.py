@@ -5,27 +5,42 @@ from mss import mss
 from PIL import Image
 import directkeys_linux as dkey
 
-# Put screen only in grey lines. Not working.
+# Region of interest
+def roi(img,vertices):
+    mask = np.zeros_like(img)
+    cv2.fillPoly(mask, vertices, 255)
+    masked = cv2.bitwise_and(img,mask)
+    return masked
+
+# Put screen only in grey lines
 def process_img(original_image):
     processed_img = cv2.cvtColor(original_image, cv2.COLOR_BGR2GRAY)
-    processed_img = cv2.Canny(processed_img, threshold1=200, threshold2=300)
+    processed_img = cv2.Canny(processed_img, threshold1=150, threshold2=160)
+    #vertices = np.array([[450,300],[300,300],[600,300],[600,450]])
+    #vertices = np.array([[0,0],[800,450],[0,450],[800,0]])
+    vertices = np.array([[800,450],[0,450],[400,300]])
+    processed_img = roi(processed_img,[vertices])
     return processed_img
 
+
+
 # Waiting for selecting the game window
-for i in list(range(4))[::-1]:
-    print(i+1)
-    time.sleep(1)
+# for i in list(range(4))[::-1]:
+#     print(i+1)
+#     time.sleep(1)
 
 
 # walking for 3 seconds
-print('Walking for 3 seconds')
-dkey.sendkeys_down('w')
-time.sleep(3)
-dkey.sendkeys_up('w')
-print('Walking back for 3 seconds')
-dkey.sendkeys_down('s')
-time.sleep(3)
-dkey.sendkeys_up('s')
+# print('Walking for 3 seconds')
+# dkey.sendkeys_down('w')
+# time.sleep(3)
+# dkey.sendkeys_up('w')
+# print('Walking back for 3 seconds')
+# dkey.sendkeys_down('s')
+# time.sleep(3)
+# dkey.sendkeys_up('s')
+
+
 
 # TODO: Comment everything
 sct = mss()
