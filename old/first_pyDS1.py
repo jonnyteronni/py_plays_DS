@@ -22,14 +22,14 @@ for i in list(range(4))[::-1]:
 
 
 # walking for 3 seconds
-print('Walking for 3 seconds')
-dkey.sendkeys_down('w')
-time.sleep(3)
-dkey.sendkeys_up('w')
-print('Walking back for 3 seconds')
-dkey.sendkeys_down('s')
-time.sleep(3)
-dkey.sendkeys_up('s')
+# print('Walking for 3 seconds')
+# dkey.sendkeys_down('w')
+# time.sleep(3)
+# dkey.sendkeys_up('w')
+# print('Walking back for 3 seconds')
+# dkey.sendkeys_down('s')
+# time.sleep(3)
+# dkey.sendkeys_up('s')
 
 # TODO: Comment everything
 sct = mss()
@@ -38,6 +38,7 @@ while 1:
     w, h = 800, 450
     monitor = {'top': 65, 'left': 0, 'width': w, 'height': h}
     screen = Image.frombytes('RGB', (w,h), sct.grab(monitor).rgb)
+    #screen = Image.fromarray(sct.grab(monitor).rgb)
     #new_screen = process_img(screen)
     #cv2.imshow('window1',new_screen)
     cv2.imshow('window2', cv2.cvtColor(np.array(screen), cv2.COLOR_RGB2BGR))
