@@ -1,5 +1,5 @@
 # Use the official image as a parent image.
-FROM node:Ubuntu
+FROM Ubuntu
 
 # Set the working directory.
 WORKDIR /usr/src/app
