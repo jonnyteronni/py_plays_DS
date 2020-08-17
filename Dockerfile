@@ -5,7 +5,7 @@ FROM ubuntu
 WORKDIR /usr/src/app
 
 # Copy the file from your host to your current location.
-COPY package.json .
+#COPY package.json .
 
 # Run the command inside your image filesystem.
 RUN npm install
